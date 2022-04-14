@@ -1,0 +1,498 @@
+:root {
+  --pizza-maker-width: calc(100vw/3);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@311&display=swap');
+
+* {
+  margin:0%;
+  padding:0%;
+  font-family: 'Roboto Slab', serif;
+}
+
+header{
+  width: 100vw;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #79685d;
+}
+
+#pageLogo{
+  float: left;
+  height: 118px;
+  width: 118px;
+  padding: 5px;
+}
+
+#pageLogo:hover{
+  cursor: pointer;
+}
+
+#pageTitle{
+  float: right;
+  margin-left: 150px;
+}
+
+main{
+  height: calc(100vh - 128px);
+  background: #cccccc;
+}
+
+#homeContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.homePageText{
+  width: 450px;
+  text-align: center;
+}
+
+
+#startButton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #79685d;
+  border: none;
+  color: #000000;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#startButton:hover {
+  background-color: #584d46;
+}
+
+#startButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#startButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#startButton:hover span {
+  padding-right: 25px;
+}
+
+#startButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#pizzaMaker{
+  display: flex;
+  justify-content: center;
+  align-items: centre;
+}
+
+.toppingSelector{
+  width: var(--pizza-maker-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#pizzaDisplay{
+  width: var(--pizza-maker-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#pizzaContainer{
+  width: 274px;
+  height: 274px;
+  border: 3px solid #262626;
+  position: relative;
+  background: #cccccc;
+  transition: 0.3s;
+}
+
+.thePizza{
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  transition: 0.3s;
+}
+
+.hide{
+  z-index: 1;
+  opacity: 0;
+}
+
+#base{
+  z-index: 0;
+}
+
+#explainText{
+  font-size: 25px;
+  text-align: center;
+  width: 25vw;
+}
+
+#sauceSelector{
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper{
+  display: inline-flex;
+  height: 175px;
+  width: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+}
+.wrapper .option{
+  background: #79685d;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #584d46;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #584d46;
+  background: #584d46;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #1c1c1c;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+
+
+.twoToppings{
+  width: 100%;
+  height: 168px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.toppingImg{
+  width: 100%;
+  height: 100%;
+}
+
+
+.toppingContainer{
+  position: relative;
+  width: 128px;
+  height: 128px;
+  background: rgba(121, 104, 93, 0.65);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.toppingContainer:hover{
+  cursor: pointer;
+  background: rgba(121, 104, 93, 1);
+}
+
+.toppingText{
+  width: 100%;
+  positon: absolute;
+  bottom: 0;
+  text-align: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.toppingContainer:hover .toppingText{
+  opacity: 1;
+  color: #1c1c1c;
+}
+
+#nameGiver{
+  width: 257px;
+  padding: 0px 12px 0px 12px;
+}
+
+#pizzaName{
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  width: 265px;
+  max-height: 265px;
+  z-index: 2;
+}
+
+#nameInput{
+  background: rgba(121, 104, 93, 0);
+  transition: 0.3s;
+  border: 2px solid #79685d;
+  border-radius: 2px;
+  float: right;
+  width: 63%;
+}
+
+#nameInput:focus{
+  background: rgba(121, 104, 93, 1);
+  border: 2px solid #584d46;
+  border-radius: 4px;
+}
+
+.undoButton{
+  position: absolute;
+  top: -37px;
+  left: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#finaliseBody{
+  display: flex;
+  justify-content: center;
+  align-items: centre;
+  height: 100%;
+}
+
+.finalisePartition{
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#yesOrNo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yesNoBut {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #79685d;
+  border: none;
+  color: #000000;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 115px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.yesNoBut:hover {
+  background-color: #584d46;
+}
+
+.yesNoBut span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.yesNoBut span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.yesNoBut:hover span {
+  padding-right: 25px;
+}
+
+.yesNoBut:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#pizzaDelivery{
+  width: 95%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#pizzaBox{
+  position: absolute;
+  left: 20%;
+  transition: 0.3s;
+}
+
+#pizzaFinalise{
+  position: absolute;
+  left: calc(20% + 100px);
+  top: 38%;
+  width: 265px;
+  height: 265px;
+  transition: 0.3s;
+}
+
+#walletInput{
+  background: rgba(121, 104, 93, 0);
+  transition: 0.3s;
+  border: 3px solid #79685d;
+  border-radius: 5px;
+  float: right;
+  width: 260px;
+  height: 30px;
+  padding: 5px;
+  margin: 20px 0px 20px 0px;
+}
+
+#walletInput:focus{
+  background: rgba(121, 104, 93, 1);
+  border: 3px solid #584d46;
+  border-radius: 4px;
+}
+
+#processText{
+  font-size: 23px;
+  width: 245px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1215px) {
+  
+  #pizzaBox{
+    left: 20%;
+    width: 315px;
+    height: 321px;
+  }
+  
+  #pizzaFinalise{
+    position: absolute;
+    left: calc(20% + 68px);
+    top: 43%;
+    width: 171px;
+    height: 171px;
+  }
+  
+}
+
+@media only screen and (max-width: 895px) {
+  
+  #pizzaContainer{
+    width: 200px;
+    height: 200px;
+  }
+
+  .thePizza{
+    width: 192px;
+    height: 192px;
+    top: 4px;
+    left: 4px;
+  }
+
+  .toppingImg{
+    width: 96px;
+    height: 96px;
+  }
+
+  .toppingContainer{
+    width: 96px;
+    height: 96px;
+  }
+
+  #nameGiver{
+    width: 200px;
+    padding: 0px 8px 0px 8px;   
+  }
+
+  #nameInput{
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 810px) {
+
+
+  #pizzaBox{
+    left: 20%;
+    width: 260px;
+    height: 265px;
+  }
+  
+  #pizzaFinalise{
+    position: absolute;
+    left: calc(20% + 65px);
+    top: 45%;
+    width: 128px;
+    height: 128px;
+  }
+}

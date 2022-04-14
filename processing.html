@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>NFT Pizza Place</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.0.0/umd/react.production.min.js"></script>
+  <style>
+    .loader {
+      border: 16px solid #79685d;
+      border-top: 16px solid #584d46;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html">
+      <img src="/images/homeButton.png" id="pageLogo">
+    </a>
+    <h1 id="pageTitle">NFT Pizza Place</h1>
+  </header>
+
+  <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+    <h3 style="position: absolute; left: 1.5%; top: 3%;">*Please note that the NFT Contract runs on the Replit Testnet</h3>
+
+    <p id="processText">Please enter your wallet's address, so the NFT can be minted to your wallet.</p>
+    <input type="text" id="walletInput">
+    <button class="yesNoBut" id="addressSubmit" onclick="submitAddress(); download();" style="vertical-align:middle;">
+      <span><b>Submit </b></span>
+    </button>
+    <div class="loader" id="loaderID" style="display: none;"></div>
+  </main>
+
+  <script>
+
+    let walletAddress;
+
+    function submitAddress() {
+      walletAddress = document.getElementById("walletInput").value;
+      document.getElementById("processText").style.display = "none";
+      document.getElementById("walletInput").style.display = "none";
+      document.getElementById("addressSubmit").style.display = "none";
+      document.getElementById("loaderID").style.display = "inline";
+      setTimeout(() => { location.href = "/mintingDone.html"; }, 5500);
+    }
+
+    function download() {
+      let pizName = localStorage.getItem("pizzaName");
+      pizName = pizName.concat(".png");
+      const data = localStorage.getItem("userPizza");
+      var a = document.createElement("a");
+      a.href = data;
+      a.setAttribute("download", pizName);
+      a.click();
+    }
+
+  </script>
+
+</body>
+
+</html>

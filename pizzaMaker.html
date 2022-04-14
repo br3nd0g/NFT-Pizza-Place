@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>NFT Pizza Place</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+  <script src="/html2canvas.min.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html">
+      <img src="/images/homeButton.png" id="pageLogo">
+    </a>
+    <h1 id="pageTitle">NFT Pizza Place</h1>
+  </header>
+
+  <main id="pizzaMaker">
+
+    <div class="toppingSelector">
+      <p id="explainText">Select the sauce for your base, then drag and drop the ingredients from the right onto your
+        pizza. When done, name and submit it, to finalize your pizza.</p>
+      <div id="sauceSelector">
+        <h3 style="font-size: 20px;  text-align: center;">Choose the sauce for your base</h3>
+        <div class="wrapper" onclick="findSauce()">
+          <input type="radio" name="sauce" value="tomato" class="radioSauce" id="option-1" checked>
+          <input type="radio" name="sauce" value="barbecue" class="radioSauce" id="option-2">
+          <label for="option-1" class="option option-1">
+            <div class="dot"></div>
+            <span>Tomato</span>
+          </label>
+          <label for="option-2" class="option option-2">
+            <div class="dot"></div>
+            <span>Barbecue</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="pizzaDisplay">
+      <h2 style="font-size: 50px;  text-align: center;"><b>Your Pizza</b></h2>
+      <div id="pizzaContainer">
+        <img id="base" class="thePizza" src="/images/basedTomato.png" ondragenter="detectDragOver()"
+          ondragleave="detectDragLeave()">
+
+        <img id="cheese" class="thePizza hide" src="/images/cheese.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+        <img id="pepperoni" class="thePizza hide" src="/images/pepperoni.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+        <img id="ham" class="thePizza hide" src="/images/ham.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+        <img id="pineapple" class="thePizza hide" src="/images/pineapple.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+        <img id="mushroom" class="thePizza hide" src="/images/mushroom.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+        <img id="basil" class="thePizza hide" src="/images/basil.png" ondragenter="detectDragOver()" ondragleave="detectDragLeave()">
+
+        <h3 id="pizzaName"  ondragenter="detectDragOver()" ondragleave="detectDragLeave()">Name</h3>
+      </div>
+      <div id="nameGiver">
+        <p style="display: inline;">Pizza's name: </p>
+        <input type="text" id="nameInput" name="pizName" value="Name" maxlength="352">
+      </div>
+      <button id="startButton" style="vertical-align:middle" onclick="screenshot()">
+        <span><b>Bake </b></span>
+      </button>
+
+    </div>
+
+    <div class="toppingSelector">
+      <div class="twoToppings">
+        <div class="toppingContainer">
+          <img src="/images/undo.png" class="undoButton" id="cheeseUndo" onclick="removeTopping('cheese')">
+          <img src="/images/cheese.png" draggable="true" class="toppingImg" ondragstart="setTopping('cheese')"
+            ondragend="addTopping()">
+          <p class="toppingText">Cheese</p>
+        </div>
+        <div class="toppingContainer">
+          <img src="/images/undo.png" class="undoButton" id="pepperoniUndo" onclick="removeTopping('pepperoni')">
+          <img src="/images/pepperoni.png" draggable="true" class="toppingImg" ondragstart="setTopping('pepperoni')"
+            ondragend="addTopping()">
+          <p class="toppingText">Pepperoni</p>
+        </div>
+      </div>
+      <div class="twoToppings">
+        <div class="toppingContainer">
+          <img src="/images/undo.png" class="undoButton" id="hamUndo" onclick="removeTopping('ham')">
+          <img src="/images/ham.png" draggable="true" class="toppingImg" ondragstart="setTopping('ham')"
+            ondragend="addTopping()">
+          <p class="toppingText">Ham</p>
+        </div>
+        <div class="toppingContainer">
+          <img src="/images/undo.png" class="undoButton" id="pineappleUndo" onclick="removeTopping('pineapple')">
+          <img src="/images/pineapple.png" draggable="true" class="toppingImg" ondragstart="setTopping('pineapple')"
+            ondragend="addTopping()">
+          <p class="toppingText">Pineapple</p>
+        </div>
+      </div>
+      <div class="twoToppings">
+        <div class="toppingContainer">
+          <img src="/images/undo.png" class="undoButton" id="mushroomUndo" onclick="removeTopping('mushroom')">
+          <img src="/images/mushroom.png" draggable="true" class="toppingImg" ondragstart="setTopping('mushroom')"
+            ondragend="addTopping()">
+          <p class="toppingText"">Mushroom</p>
+        </div>
+        <div class=" toppingContainer">
+            <img src="/images/undo.png" class="undoButton" id="basilUndo" onclick="removeTopping('basil')">
+            <img src="/images/basil.png" draggable="true" class="toppingImg" ondragstart="setTopping('basil')"
+              ondragend="addTopping()">
+          <p class="toppingText">Basil</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+<script>
+
+  //detecting os
+  let os = "other";
+  if (navigator.appVersion.indexOf("Mac") != -1) os = "macOS";
+
+
+  //mirroring the input with the text on the pizza
+  var inputBox = document.getElementById('nameInput');
+  inputBox.onkeyup = function () {
+    document.getElementById('pizzaName').innerHTML = inputBox.value;
+  }
+
+  //dragging toppings on
+
+  var draggingOverPizza = false;
+  var currentTopping;
+
+  function setTopping(topping) {
+    currentTopping = topping;
+    draggingOverPizza = false;
+  }
+
+  function detectDragOver() {
+    draggingOverPizza = true;
+  }
+
+  function detectDragLeave() {
+    if (os == "macOS"){
+      setTimeout(() => {draggingOverPizza = false;}, 1000);
+    } else{
+      setTimeout(() => {draggingOverPizza = false;}, 250);
+    }
+
+  }
+
+  function addTopping() {
+    if (draggingOverPizza == true) {
+      document.getElementById(currentTopping).style.opacity = 1;
+      var undoButton = currentTopping.concat("Undo");
+      document.getElementById(undoButton).style.opacity = 1;
+    }
+  }
+
+  function removeTopping(topping) {
+    document.getElementById(topping).style.opacity = 0;
+    document.getElementById(topping.concat("Undo")).style.opacity = 0;
+  }
+
+</script>
+
+</html>

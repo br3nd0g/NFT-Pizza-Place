@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>NFT Pizza Place</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html">
+
+      <img src="/images/homeButton.png" id="pageLogo">
+    </a>
+    <h1 id="pageTitle">NFT Pizza Place</h1>
+  </header>
+
+  <main>
+    <div id="finaliseBody">
+      <div class="finalisePartition">
+        <h2 style="text-align: center; margin-bottom: 50px; font-size: 35px;">Are you happy with your pizza?</h2>
+        <p style="text-align: center; width: 275px; margin-bottom: 50px; font-size: 23px;">Click <b>yes</b> to mint the
+          pizza into an NFT, and then add it to your wallet, or click <b>no</b> to return
+          to the home page.</p>
+        <div id="yesOrNo">
+          <a href="processing.html">
+            <button class="yesNoBut" style="vertical-align:middle;">
+              <span><b>Yes </b></span>
+            </button>
+          </a>
+          <a href="index.html">
+            <button class="yesNoBut" style="vertical-align:middle;">
+              <span><b>No </b></span>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="finalisePartition">
+        <div id="pizzaDelivery">
+          <img id="pizzaBox" src="/images/pizzaBox.png" onload="showFinalPizza()">
+          <img id="pizzaFinalise">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function showFinalPizza() {
+      let pizzaImage = localStorage.getItem("userPizza");
+      document.getElementById("pizzaFinalise").setAttribute("src", pizzaImage);
+    }
+  </script>
+
+</body>
+
+</html>
