@@ -2,6 +2,7 @@
 I made this website for the Replit x Opensea "Hello NFT World" Hackathon
 
 The original idea was a website in which you could create a pizza, and it would mint an NFT of it for free. Sadly, due to time constraints and lack of knowledge, I was not able to implement the minting of NFTs, as after *hours and hours* of researching how to do so, i could not find a solution that i could wrap my head around and implement.
+Take a look at it [here](https://nft-pizza-place.brendawg.repl.co/).
 
 ## What I learnt
 I developed my understanding and knowledge of JavaScript greatly during this project, although I still have much more to learn.
